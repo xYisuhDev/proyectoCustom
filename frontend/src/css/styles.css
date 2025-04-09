@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import "tailwindcss";
+
+.background-image {
+  background-image: url('/fotobg.png');
+  background-size: cover;
+  background-position: center;
+  filter: opacity(0.9);
+}
+
+.game-card {
+  
+}
