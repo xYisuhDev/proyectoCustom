@@ -27,17 +27,17 @@ async function renderGames() {
         "transition-shadow"
       );
 
-      const image = document.createElement("img");
-      image.src = game.image; // Asegúrate de que la API devuelva esta propiedad
-      image.alt = `${game.title} cover`;
-      image.classList.add(
+      const imageUrl = document.createElement("img");
+      imageUrl.src = game.imageUrl; // Asegúrate de que la API devuelva esta propiedad
+      imageUrl.alt = `${game.title} cover`;
+      imageUrl.classList.add(
         "w-full",
         "h-48",
         "object-cover",
         "rounded-md",
         "mt-4"
       );
-      gameCard.appendChild(image);
+      gameCard.appendChild(imageUrl);
 
       const title = document.createElement("h2");
       title.textContent = `${game.title}`;
@@ -104,17 +104,17 @@ document
         "transition-shadow"
       );
 
-      const image = document.createElement("img");
-      image.src = game.image; // Asegúrate de que la API devuelva esta propiedad
-      image.alt = `${game.title} cover`;
-      image.classList.add(
+      const imageUrl = document.createElement("img");
+      imageUrl.src = game.imageUrl; // Asegúrate de que la API devuelva esta propiedad
+      imageUrl.alt = `${game.title} cover`;
+      imageUrl.classList.add(
         "w-full",
         "h-48",
         "object-cover",
         "rounded-md",
         "mt-4"
       );
-      gameCard.appendChild(image);
+      gameCard.appendChild(imageUrl);
 
       const title = document.createElement("h2");
       title.textContent = `${game.title}`;

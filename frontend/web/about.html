@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stargames</title>
+  </head>
+  <body>
+    <header
+      class="flex items-center justify-between p-4 bg-blue-950 text-white fixed left-0 right-0 z-10"
+    >
+      <img src="./public/logo.png" alt="Stargames Logo" class="h-25" />
+      <h1
+        class="intro absolute inset-0 flex items-center justify-center text-5xl font-black pointer-events-none rounded-2xl"
+      >
+        STARGAMES
+      </h1>
+      <nav class="px-6 py-4 flex items-center justify-between space-x-4">
+        <ul class="flex space-x-4 text-lg font-semibold rounded-lg ring p-2">
+          <li><a href="../web/index">Home</a></li>
+          <li><a href="../web/reviews">Reviews</a></li>
+          <li><a href="../web/about">About</a></li>
+          <li><a href="../web/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="background-image">
+      <section
+        class="flex flex-col items-center justify-center h-screen text-center"
+      >
+        <h2 class="text-4xl font-bold mb-4 text-white">
+          Welcome to Stargames!
+        </h2>
+        <p class="text-lg mb-2 text-gray-400">
+          Your one-stop destination for the latest games and reviews.
+        </p>
+        <p class="text-lg mb-2 text-gray-400">Go check it out!</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 mb-1 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+        <a
+          href="./web/reviews.html"
+          class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-putple-700"
+          >Explore Reviews</a
+        >
+      </section>
+    </main>
+
+    <footer
+      class="bg-blue-950 text-white py-4 text-center fixed bottom-0 left-0 right-0"
+    >
+      <p>&copy; 2025 Stargames. All rights reserved.</p>
+    </footer>
+    <script type="module" src="../index.js"></script>
+  </body>
+</html>

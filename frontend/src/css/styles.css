@@ -8,6 +8,14 @@
   filter: opacity(0.9);
 }
 
-.game-card {
-  
+.game-container {
+  scrollbar-width: none;
+}
+
+.intro {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 20px;
 }
