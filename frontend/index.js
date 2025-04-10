@@ -27,8 +27,21 @@ async function renderGames() {
         "transition-shadow"
       );
 
+      const image = document.createElement("img");
+      image.src = game.image; // Asegúrate de que la API devuelva esta propiedad
+      image.alt = `${game.title} cover`;
+      image.classList.add(
+        "w-full",
+        "h-48",
+        "object-cover",
+        "rounded-md",
+        "mt-4"
+      );
+      gameCard.appendChild(image);
+
       const title = document.createElement("h2");
-      title.textContent = `Title: ${game.title}`;
+      title.textContent = `${game.title}`;
+      title.classList.add("text-lg", "font-semibold", "mt-2");
       gameCard.appendChild(title);
 
       const genre = document.createElement("p");
@@ -36,8 +49,24 @@ async function renderGames() {
       gameCard.appendChild(genre);
 
       const platform = document.createElement("p");
-      platform.textContent = `Platform: ${game.platform}`;
+      platform.textContent = `Platforms: ${game.platform}`;
       gameCard.appendChild(platform);
+
+      const recommendedAge = document.createElement("p");
+      recommendedAge.textContent = `Recommended Age: ${game.recommendedAge}`;
+      if (game.recommendedAge === "18+") {
+        recommendedAge.classList.add("text-red-500"); // Red for mature games
+      } else if (game.recommendedAge === ("17+" || "16+" || "15+" || "14+")) {
+        recommendedAge.classList.add("text-yellow-500"); // Yellow for teen games
+      } else {
+        recommendedAge.classList.add("text-green-500"); // Green for other ages
+      }
+      gameCard.appendChild(recommendedAge);
+
+      const releaseDate = document.createElement("p");
+      releaseDate.textContent = `Release Date: ${game.releaseDate}`;
+      releaseDate.classList.add("bg-gray-700");
+      gameCard.appendChild(releaseDate);
 
       container.appendChild(gameCard);
     });
@@ -65,10 +94,31 @@ document
 
     games.forEach((game) => {
       const gameCard = document.createElement("div");
-      gameCard.classList.add("game-card");
+      gameCard.classList.add(
+        "game-card",
+        "ring",
+        "ring-white",
+        "rounded-lg",
+        "p-4",
+        "shadow-lg",
+        "transition-shadow"
+      );
+
+      const image = document.createElement("img");
+      image.src = game.image; // Asegúrate de que la API devuelva esta propiedad
+      image.alt = `${game.title} cover`;
+      image.classList.add(
+        "w-full",
+        "h-48",
+        "object-cover",
+        "rounded-md",
+        "mt-4"
+      );
+      gameCard.appendChild(image);
 
       const title = document.createElement("h2");
-      title.textContent = `Title: ${game.title}`;
+      title.textContent = `${game.title}`;
+      title.classList.add("text-lg", "font-semibold", "mt-2");
       gameCard.appendChild(title);
 
       const genre = document.createElement("p");
@@ -76,7 +126,7 @@ document
       gameCard.appendChild(genre);
 
       const platform = document.createElement("p");
-      platform.textContent = `Platform: ${game.platform}`;
+      platform.textContent = `Platforms: ${game.platform}`;
       gameCard.appendChild(platform);
 
       const releaseDate = document.createElement("p");
