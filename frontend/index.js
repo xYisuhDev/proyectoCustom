@@ -1,6 +1,6 @@
 import "./src/css/styles.css";
 
-const url = "http://localhost:3000/games";
+const url = "http://5.250.190.219:3000/games";
 
 async function getGames() {
   const res = await fetch(url);

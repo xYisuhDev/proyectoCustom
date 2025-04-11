@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     // Cargar detalles del juego
-    const gameRes = await fetch(`http://localhost:3000/games/${gameId}`);
+    const gameRes = await fetch(`http://5.250.190.219:3000/games/${gameId}`);
     if (!gameRes.ok) throw new Error("Game not found");
     const game = await gameRes.json();
 
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
           const res = await fetch(
-            `http://localhost:3000/games/${gameId}/reviews`,
+            `http://5.250.190.219:3000/games/${gameId}/reviews`,
             {
               method: "POST",
               headers: {
@@ -90,7 +90,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
+    const res = await fetch(
+      `http://5.250.190.219:3000/games/${gameId}/reviews`
+    );
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -129,7 +131,9 @@ async function loadReviews(gameId) {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
+    const res = await fetch(
+      `http://5.250.190.219:3000/games/${gameId}/reviews`
+    );
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -145,7 +149,7 @@ async function loadReviews(gameId) {
         (review) => `
         <div class="bg-gray-800 p-4 rounded-lg relative">
           <!-- Botón del menú -->
-          <button class="review-menu-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-700">
+          <button class="review-menu-btn absolute top-2 right-2 p-1 mt-1 rounded hover:bg-gray-700">
             <i class="fas fa-ellipsis-v"></i>
           </button>
           
@@ -169,7 +173,7 @@ async function loadReviews(gameId) {
               <h3 class="font-bold">${review.author}</h3>
               <div class="flex items-center">
                 ${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}
-                <span class="ml-2 text-sm text-gray-400">
+                <span class="ml-2 text-sm text-gray-400 mr-2">
                   ${new Date(review.date).toLocaleDateString()}
                 </span>
               </div>
@@ -228,7 +232,7 @@ function setupReviewMenus() {
       if (confirm("¿Seguro que quieres borrar esta reseña?")) {
         try {
           const response = await fetch(
-            `http://localhost:3000/reviews/${reviewId}`,
+            `http://5.250.190.219:3000/reviews/${reviewId}`,
             {
               method: "DELETE",
             }
@@ -284,8 +288,8 @@ function showEditForm(reviewCard, reviewId) {
           <textarea class="w-full p-2 bg-gray-600 rounded" rows="3" required>${comment}</textarea>
         </div>
         <div class="flex justify-end space-x-2">
-          <button type="button" class="cancel-edit px-3 py-1 bg-gray-500 rounded">Cancelar</button>
-          <button type="submit" class="px-3 py-1 bg-blue-600 rounded">Guardar</button>
+          <button type="button" class="cancel-edit px-3 py-1 bg-gray-500 rounded">Cancel</button>
+          <button type="submit" class="px-3 py-1 bg-blue-600 rounded">Save</button>
         </div>
       </form>
     `;
@@ -306,7 +310,7 @@ function showEditForm(reviewCard, reviewId) {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/reviews/${reviewId}`,
+        `http://5.250.190.219:3000/reviews/${reviewId}`,
         {
           method: "PUT",
           headers: {
