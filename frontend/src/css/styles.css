@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import "tailwindcss";
 
+
+
 .background-image {
   background-image: url('/fotobg.png');
-  background-size: cover;
   background-position: center;
   filter: opacity(0.9);
 }
@@ -14,8 +15,40 @@
 
 .intro {
   font-family: 'Orbitron', sans-serif;
-  font-size: 2rem;
   color: #ffffff;
   text-align: center;
-  margin-top: 20px;
+}
+
+.review-menu-button {
+  transition: all 0.2s ease;
+}
+
+.review-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.review-menu {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.review-menu:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.edit-review:hover, .delete-review:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.gtext {
+  color: #808da8;
+}
+
+.games-container.few-results {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+  justify-content: center;
 }

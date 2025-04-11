@@ -7,57 +7,98 @@
     <script type="module" src="../index.js"></script>
   </head>
   <body>
-    <header
-      class="flex items-center justify-between p-4 bg-blue-950 text-white fixed left-0 right-0 z-2"
-    >
-      <img src="../public/logo.png" alt="Stargames Logo" class="h-25" />
-      <h1
-        class="absolute inset-0 flex items-center justify-center text-5xl font-black pointer-events-none"
-      >
-        Stargames
-      </h1>
-      <nav class="px-6 py-4 flex items-center justify-between space-x-4">
-        <ul class="flex space-x-4 text-lg font-semibold">
-          <li><a href="../web/index.html">Home</a></li>
-          <li><a href="../web/reviews.html">Reviews</a></li>
-          <li><a href="../web/about.html">About</a></li>
-          <li><a href="../web/contact.html">Contact</a></li>
-        </ul>
-      </nav>
+    <header>
+      <nav class="bg-blue-950 text-white p-4 top-0 left-0 right-0 z-50">
+          <div class="intro container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+              <img src="/public/logo.png" alt="Stargames Logo" class="h-10 mr-4">
+              <h1 class="text-2xl font-bold">STARGAMES</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+              <a href="/" class="hover:text-blue-300 transition">Home</a>
+              <a href="http://localhost:5173/web/reviews" class="hover:text-blue-300 transition">Reviews</a>
+              <a href="/about.html" class="hover:text-blue-300 transition">About</a>
+            </div>
     </header>
-    <main class="pt-44 background-image mb-10">
-      <section
-        class="flex flex-col items-center h-screen text-center z-10 relative"
-      >
-        <h1 class="text-3xl font-bold text-white background-blur">
-          Search for reviews
-        </h1>
-        <form class="mt-4" id="search-form">
-          <input
-            type="text"
-            placeholder="Search game title..."
-            id="search"
-            class="w-125 px-4 py-2 border border-gray-300 rounded bg-gray-200 ring"
-            required
-          />
-          <button
-            type="submit"
-            class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-700"
-          >
-            Search
-          </button>
-        </form>
-        <div
-          id="games-container"
-          class="game-container flex flex-wrap m-5 gap-20 sm:m-5 p-1 size-fit justify-around text-white overflow-auto"
-        ></div>
-      </section>
+    <main class="flex pt-7 background-image">
+      <!-- FILTROS -->
+      <div class="w-70 mt-20">
+        <section class="w-80 m-7"> 
+          <p class="text-white font-semibold text-2xl pb-5">Filtrar por: </p>
+          <form class="text-white border-t w-50 pt-5 backgroundblur" id="">
+            <input type="radio" class="m-2" name="GAME" id="gameFilter">
+            <label for="GAME">GAME</label>
+              <br>
+            <input type="radio" class="m-2" name="DLC" id="dlcFilter">
+            <label for="DLC">DLC</label>
+          </form>
+        </section>
+      </div>
+
+      <!-- JUEGOS -->
+      <div>
+        <section
+          class="flex flex-col items-center h-screen text-center z-10 relative"
+        >
+          <h1 class="text-2xl font-bold text-white background-blur">
+            Search for reviews
+          </h1>
+          <form class="mt-4" id="search-form">
+            <input
+              type="text"
+              placeholder="Search game title..."
+              id="search"
+              class="w-125 px-4 py-2 border border-gray-300 rounded bg-gray-200 ring"
+            />
+            <button
+              type="submit"
+              class="bg-purple-500 text-white px-4 py-2.5 rounded hover:bg-purple-700 cursor-pointer"
+            >
+              Search
+            </button>
+          </form>
+          <div
+            id="games-container"
+            class="game-container flex flex-wrap m-5 gap-20 sm:m-5 p-1 h-5/6 size-fit justify-between text-white overflow-auto"
+          ></div>
+        </section>
+      </div>  
     </main>
 
-    <footer
-      class="bg-blue-950 text-white py-4 text-center fixed bottom-0 left-0 right-0"
-    >
-      <p>&copy; 2025 Stargames. All rights reserved.</p>
+    <footer class="bg-blue-950 text-white py-6">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <img src="/public/logo.png" alt="Stargames Logo" class="h-15">
+            <p class="mt-2">EXPRESS YOUR GAMING THOUGHTS</p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Links</h3>
+              <ul class="space-y-2">
+                <li><a href="/" class="hover:text-blue-300 transition">Home</a></li>
+                <li><a href="/reviews.html" class="hover:text-blue-300 transition">Reviews</a></li>
+                <li><a href="/about.html" class="hover:text-blue-300 transition">About</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-semibold mb-2">Legal</h3>
+              <ul class="space-y-2">
+                <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-blue-300 transition">Terms of Service</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="border-t mt-4 p-6 border-blue-800 text-center">
+          <p>&copy; 2025 Stargames. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
     </footer>
   </body>
 </html>

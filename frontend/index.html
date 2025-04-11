@@ -5,28 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stargames</title>
   </head>
-  <body>
-    <header
-      class="flex items-center justify-between p-4 bg-blue-950 text-white fixed left-0 right-0 z-10"
-    >
-      <img src="./public/logo.png" alt="Stargames Logo" class="h-25" />
-      <h1
-        class="intro absolute inset-0 flex items-center justify-center text-5xl font-black pointer-events-none rounded-2xl"
-      >
-        STARGAMES
-      </h1>
-      <nav class="px-6 py-4 flex items-center justify-between space-x-4">
-        <ul class="flex space-x-4 text-lg font-semibold rounded-lg ring p-2">
-          <li><a href="../web/index">Home</a></li>
-          <li><a href="../web/reviews">Reviews</a></li>
-          <li><a href="../web/about">About</a></li>
-          <li><a href="../web/contact">Contact</a></li>
-        </ul>
-      </nav>
+  <body class="overflow-hidden">
+    <header>
+      <nav class="bg-blue-950 text-white p-4 top-0 left-0 right-0 z-50">
+          <div class="intro container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+              <img src="/public/logo.png" alt="Stargames Logo" class="h-10 mr-4">
+              <h1 class="text-2xl font-bold">STARGAMES</h1>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+              <a href="/" class="hover:text-blue-300 transition">Home</a>
+              <a href="http://localhost:5173/web/reviews" class="hover:text-blue-300 transition">Reviews</a>
+              <a href="/about.html" class="hover:text-blue-300 transition">About</a>
+            </div>
     </header>
     <main class="background-image">
       <section
-        class="flex flex-col items-center justify-center h-screen text-center"
+        class="flex flex-col self-center items-center justify-center h-screen"
       >
         <h2 class="text-4xl font-bold mb-4 text-white">
           Welcome to Stargames!
@@ -51,17 +47,11 @@
         </svg>
         <a
           href="./web/reviews.html"
-          class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-putple-700"
+          class="bg-purple-500 text-white px-4 py-2 size-fit rounded hover:bg-putple-700"
           >Explore Reviews</a
         >
       </section>
     </main>
-
-    <footer
-      class="bg-blue-950 text-white py-4 text-center fixed bottom-0 left-0 right-0"
-    >
-      <p>&copy; 2025 Stargames. All rights reserved.</p>
-    </footer>
     <script type="module" src="../index.js"></script>
   </body>
 </html>
