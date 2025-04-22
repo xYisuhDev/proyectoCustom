@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  const baseurl = "http://localhost:3000";
+  const baseurl = "http://localhost:3000/games";
 
   try {
     const gameRes = await fetch(baseurl + `/${gameId}`);
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-          const res = await fetch(baseurl + `/games/${gameId}/reviews`, {
+          const res = await fetch(baseurl + `/${gameId}/reviews`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(baseurl + `/games/${gameId}/reviews`);
+    const res = await fetch(baseurl + `/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -126,7 +126,7 @@ async function loadReviews(gameId) {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(baseurl + `/games/${gameId}/reviews`);
+    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
