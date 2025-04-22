@@ -24,22 +24,19 @@ app.use(express.json());
 app.get("/games", async (req, res) => {
   try {
     const { title } = req.query;
-    const { filter } = req.query;
-    const response = await fetch("https://gamerpower.com/api/giveaways");
-    if (!response.ok) throw new Error("Network response was not ok");
+    const { type } = req.query;
+    let url = `https://gamerpower.com/api/giveaways?type=${type}`;
+    if (title && title != "") {
+      url = url + `&title=${title}`;
+    }
+    console.log(url);
+    const response = await fetch(url);
+    if (!response.ok)
+      throw new Error(
+        "Network response was not ok" + JSON.stringify(await response.json())
+      );
 
     let giveaways = await response.json();
-    if (title || filter) {
-      giveaways = giveaways.filter((g) => {
-        const matchesTitle = title 
-          ? g.title.toLowerCase().includes(title.toLowerCase()) 
-          : true;
-        const matchesFilter = filter 
-          ? g.type.toLowerCase().includes(filter.toLowerCase()) 
-          : true;
-        return matchesTitle && matchesFilter;
-      });
-    }
 
     const games = giveaways.map((giveaway) => ({
       id: giveaway.id, //

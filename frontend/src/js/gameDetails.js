@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    const gameRes = await fetch(`http://5.250.190.219:3000/games/${gameId}`);
+    const gameRes = await fetch(`http://localhost:3000/games/${gameId}`);
     if (!gameRes.ok) throw new Error("Game not found");
     const game = await gameRes.json();
 
-    document.title = `${game.title} | Stargames`
+    document.title = `${game.title} | Stargames`;
 
     const gameDetails = document.getElementById("game-details");
     gameDetails.innerHTML = `
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         try {
           const res = await fetch(
-            `http://5.250.190.219:3000/games/${gameId}/reviews`,
+            `http://localhost:3000/games/${gameId}/reviews`,
             {
               method: "POST",
               headers: {
@@ -88,9 +88,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(
-      `http://5.250.190.219:3000/games/${gameId}/reviews`
-    );
+    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -129,9 +127,7 @@ async function loadReviews(gameId) {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(
-      `http://5.250.190.219:3000/games/${gameId}/reviews`
-    );
+    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -228,7 +224,7 @@ function setupReviewMenus() {
       if (confirm("¿Seguro que quieres borrar esta reseña?")) {
         try {
           const response = await fetch(
-            `http://5.250.190.219:3000/reviews/${reviewId}`,
+            `http://localhost:3000/reviews/${reviewId}`,
             {
               method: "DELETE",
             }
@@ -303,16 +299,13 @@ function showEditForm(reviewCard, reviewId) {
     const comment = form.querySelector("textarea").value;
 
     try {
-      const response = await fetch(
-        `http://5.250.190.219:3000/reviews/${reviewId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ author, rating, comment }),
-        }
-      );
+      const response = await fetch(`localhost:3000/reviews/${reviewId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ author, rating, comment }),
+      });
 
       if (!response.ok) {
         throw new Error("Error al actualizar la reseña");
