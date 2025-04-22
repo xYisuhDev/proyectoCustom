@@ -10,7 +10,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "concurrently": "^9.1.2",
-    "react-scripts": "latest"
+    "concurrently": "^9.1.2"
   }
 }

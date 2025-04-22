@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stargames</title>
+    <link rel="shortcut icon" href="icon.ico">
   </head>
-  <body class="overflow-hidden">
-    <header>
-      <nav class="bg-blue-950 text-white p-4 top-0 left-0 right-0 z-50">
+  <body class="">
+    <header class="intro">
+      <nav class="bg-gray-800 text-white p-4 top-0 left-0 right-0 z-50">
           <div class="intro container mx-auto flex justify-between items-center">
             <div class="flex items-center">
               <img src="/public/logo.png" alt="Stargames Logo" class="h-10 mr-4">
@@ -15,25 +16,25 @@
             </div>
             
             <div class="hidden md:flex space-x-6">
-              <a href="/" class="hover:text-blue-300 transition">Home</a>
-              <a href="http://localhost:5173/web/reviews" class="hover:text-blue-300 transition">Reviews</a>
-              <a href="/about.html" class="hover:text-blue-300 transition">About</a>
+              <a href="/" class="hover:text-purple-300 transition">Home</a>
+              <a href="http://5.250.190.219:5173/web/reviews" class="hover:text-purple-300 transition">Reviews</a>
+              <a href="/about.html" class="hover:text-purple-300 transition">About</a>
             </div>
     </header>
-    <main class="background-image">
+    <main class="bg-gray-900">
       <section
         class="flex flex-col self-center items-center justify-center h-screen"
       >
-        <h2 class="text-4xl font-bold mb-4 text-white">
+        <h2 class="text-4xl font-bold mb-4 text-purple-400">
           Welcome to Stargames!
         </h2>
-        <p class="text-lg mb-2 text-gray-400">
+        <p class="text-lg mb-2 text-gray-200">
           Your one-stop destination for the latest games and reviews.
         </p>
-        <p class="text-lg mb-2 text-gray-400">Go check it out!</p>
+        <p class="text-lg mb-2 text-gray-200">Go check it out!</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="w-6 h-6 mb-1 text-white"
+          class="w-6 h-6 mb-1 text-purple-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -47,11 +48,45 @@
         </svg>
         <a
           href="./web/reviews.html"
-          class="bg-purple-500 text-white px-4 py-2 size-fit rounded hover:bg-putple-700"
+          class="bg-purple-600 text-white px-4 py-2 size-fit rounded hover:bg-purple-700"
           >Explore Reviews</a
         >
       </section>
     </main>
-    <script type="module" src="../index.js"></script>
+
   </body>
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <img src="/public/logo.png" alt="Stargames Logo" class="h-10">
+          <p class="mt-2">EXPRESS YOUR GAMING THOUGHTS</p>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Links</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="hover:text-purple-300 transition">Home</a></li>
+              <li><a href="/reviews" class="hover:text-purple-300 transition">Reviews</a></li>
+              <li><a href="/about" class="hover:text-purple-300 transition">About</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 class="text-lg font-semibold mb-2">Legal</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-purple-300 transition">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-purple-300 transition">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-800 mt-6 pt-6 text-center">
+        <p>&copy; 2025 Stargames. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+      <script type="module" src="../index.js"></script>
 </html>

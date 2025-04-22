@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stargames</title>
-    <script type="module" src="../index.js"></script>
+    <link rel="shortcut icon" href="/icon.ico">
   </head>
   <body>
     <header>
-      <nav class="bg-blue-950 text-white p-4 top-0 left-0 right-0 z-50">
+      <nav class="bg-gray-800 text-white p-4 top-0 left-0 right-0 z-50">
           <div class="intro container mx-auto flex justify-between items-center">
             <div class="flex items-center">
               <img src="/public/logo.png" alt="Stargames Logo" class="h-10 mr-4">
@@ -16,22 +16,21 @@
             </div>
             
             <div class="hidden md:flex space-x-6">
-              <a href="/" class="hover:text-blue-300 transition">Home</a>
-              <a href="web/reviews" class="hover:text-blue-300 transition">Reviews</a>
-              <a href="about.html" class="hover:text-blue-300 transition">About</a>
+              <a href="/" class="hover:text-purple-300 transition">Home</a>
+              <a href="/web/reviews" class="hover:text-purple-300 transition">Reviews</a>
+              <a href="/web/about" class="hover:text-purple-300 transition">About</a>
             </div>
     </header>
-    <main class="flex pt-7 background-image">
+    <main class="flex pt-7 bg-gray-900">
       <!-- FILTROS -->
       <div class="w-70 mt-20">
         <section class="w-80 m-7"> 
           <p class="text-white font-semibold text-2xl pb-5">Filtrar por: </p>
-          <form class="text-white border-t w-50 pt-5 backgroundblur" id="">
-            <input type="radio" class="m-2" name="GAME" id="gameFilter">
-            <label for="GAME">GAME</label>
-              <br>
-            <input type="radio" class="m-2" name="DLC" id="dlcFilter">
-            <label for="DLC">DLC</label>
+          <form class="text-white border-t w-50 pt-5 backgroundblur" id="filter">
+            <select name="genre" id="genre" >
+              <option value="game" class="text-black">GAME</option>
+              <option value="dlc" class="text-black">DLC</option>
+            </select>
           </form>
         </section>
       </div>
@@ -66,39 +65,39 @@
       </div>  
     </main>
 
-    <footer class="bg-blue-950 text-white py-6">
-      <div class="container mx-auto px-4">
+    <footer class="bg-gray-800 text-white py-6">
+      <div class="intro container mx-auto px-4 text-md">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-4 md:mb-0">
             <img src="/public/logo.png" alt="Stargames Logo" class="h-15">
-            <p class="mt-2">EXPRESS YOUR GAMING THOUGHTS</p>
+            <p class="mt-2 text-lg font-bold">EXPRESS YOUR GAMING THOUGHTS</p>
           </div>
           
           <div class="grid grid-cols-2 gap-8">
             <div>
               <h3 class="text-lg font-semibold mb-2">Links</h3>
-              <ul class="space-y-2">
-                <li><a href="/" class="hover:text-blue-300 transition">Home</a></li>
-                <li><a href="/reviews" class="hover:text-blue-300 transition">Reviews</a></li>
-                <li><a href="/about" class="hover:text-blue-300 transition">About</a></li>
+              <ul class="space-y-2 text-sm">
+                <li><a href="/" class="hover:text-purple-300 transition">Home</a></li>
+                <li><a href="/reviews" class="hover:text-purple-300 transition">Reviews</a></li>
+                <li><a href="/about" class="hover:text-purple-300 transition">About</a></li>
               </ul>
             </div>
             
             <div>
               <h3 class="text-lg font-semibold mb-2">Legal</h3>
-              <ul class="space-y-2">
-                <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
-                <li><a href="#" class="hover:text-blue-300 transition">Terms of Service</a></li>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-purple-300 transition">Privacy Policy</a></li>
+                <li><a href="#" class="hover:text-purple-300 transition">Terms of Service</a></li>
               </ul>
             </div>
           </div>
         </div>
         
-        <div class="border-t mt-4 p-6 border-blue-800 text-center">
+        <div class="border-t mt-4 p-6 border-gray-800 text-center">
           <p>&copy; 2025 Stargames. All rights reserved.</p>
         </div>
       </div>
     </footer>
-    </footer>
+    <script type="module" src="../index.js"></script>
   </body>
 </html>

@@ -3,15 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Details</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title></title>
+    <link href="../src/css/styles.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="/icon.ico">
   </head>
   <header>
-    <nav class="bg-blue-950 text-white p-4 top-0 left-0 right-0 z-50">
+    <nav class="intro bg-gray-800 text-white p-4 top-0 left-0 right-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
           <div class="flex items-center">
             <img src="/public/logo.png" alt="Stargames Logo" class="h-10 mr-4">
@@ -19,20 +16,20 @@
           </div>
           
           <div class="hidden md:flex space-x-6">
-            <a href="/" class="hover:text-blue-300 transition">Home</a>
-            <a href="/reviews" class="hover:text-blue-300 transition">Reviews</a>
-            <a href="/about" class="hover:text-blue-300 transition">About</a>
+            <a href="/" class="hover:text-purple-300 transition">Home</a>
+            <a href="../web/reviews" class="hover:text-purple-300 transition">Reviews</a>
+            <a href="../web/about" class="hover:text-purple-300 transition">About</a>
           </div>
   </header>
   <body class="bg-gray-900 text-white">
     <div class="container mx-auto px-4 py-8">
       <div id="game-details" class="mb-8"></div>
 
-      <div class="bg-gray-800 p-6 rounded-lg mb-8">
-        <h2 class="rounded-lg text-xl font-bold mb-4 p-2 bg-blue-800 text-center ring ring-blue-200">REVIEW</h2>
+      <div class="bg-gray-600 p-6 rounded-lg mb-8">
+        <h2 class="rounded-lg text-xl font-bold mb-4 p-2 bg-purple-900 text-center ring ring-purple-400">REVIEW</h2>
         <form id="review-form" class="space-y-4">
           <div>
-            <label for="author" class="block mb-1">Gamer ID</label>
+            <label for="author" class="block mb-1 font-bold">Gamer ID</label>
             <input
               type="text"
               id="author"
@@ -41,18 +38,18 @@
             />
           </div>
           <div>
-            <label for="rating" class="block mb-1">STARS</label>
+            <label for="rating" class="block mb-1 font-bold">STARS</label>
             <select
               id="rating"
               name="rating"
               required
               class="w-full px-3 py-2 bg-gray-700 rounded text-white"
             >
-              <option value="1">Very bad (★)</option>
-              <option value="2">Bad (★★)</option>
-              <option value="3">Mid (★★★)</option>
-              <option value="4">Good (★★★★)</option>
-              <option value="5">Fantastic (★★★★★)</option>
+              <option value="1" class="text-red-600">Very bad (★)</option>
+              <option value="2" class="text-red-400">Bad (★★)</option>
+              <option value="3" class="text-yellow-400">Mid (★★★)</option>
+              <option value="4" class="text-green-400">Good (★★★★)</option>
+              <option value="5" class="text-green-700">Fantastic (★★★★★)</option>
             </select>
           </div>
           <div>
@@ -66,7 +63,7 @@
           </div>
           <button
             type="submit"
-            class="px-4 py-2 bg-blue-800 hover:bg-blue-900 rounded transition"
+            class="px-4 py-2 bg-purple-800 hover:bg-purple-900 rounded transition"
           >
             Send
           </button>
@@ -81,7 +78,7 @@
 
 
   </body>
-  <footer class="bg-blue-950 text-white py-6">
+  <footer class="bg-gray-800 text-white py-6">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="mb-4 md:mb-0">
@@ -93,23 +90,23 @@
           <div>
             <h3 class="text-lg font-semibold mb-2">Links</h3>
             <ul class="space-y-2">
-              <li><a href="/" class="hover:text-blue-300 transition">Home</a></li>
-              <li><a href="/reviews" class="hover:text-blue-300 transition">Reviews</a></li>
-              <li><a href="/about" class="hover:text-blue-300 transition">About</a></li>
+              <li><a href="/" class="hover:text-purple-300 transition">Home</a></li>
+              <li><a href="/reviews" class="hover:text-purple-300 transition">Reviews</a></li>
+              <li><a href="/about" class="hover:text-purple-300 transition">About</a></li>
             </ul>
           </div>
           
           <div>
             <h3 class="text-lg font-semibold mb-2">Legal</h3>
             <ul class="space-y-2">
-              <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
-              <li><a href="#" class="hover:text-blue-300 transition">Terms of Service</a></li>
+              <li><a href="#" class="hover:text-purple-300 transition">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-purple-300 transition">Terms of Service</a></li>
             </ul>
           </div>
         </div>
       </div>
       
-      <div class="border-t border-blue-800 mt-6 pt-6 text-center">
+      <div class="border-t border-gray-800 mt-6 pt-6 text-center">
         <p>&copy; 2025 Stargames. All rights reserved.</p>
       </div>
     </div>

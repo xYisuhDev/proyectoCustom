@@ -24,14 +24,21 @@ app.use(express.json());
 app.get("/games", async (req, res) => {
   try {
     const { title } = req.query;
+    const { filter } = req.query;
     const response = await fetch("https://gamerpower.com/api/giveaways");
     if (!response.ok) throw new Error("Network response was not ok");
 
     let giveaways = await response.json();
-    if (title) {
-      giveaways = giveaways.filter((g) =>
-        g.title.toLowerCase().includes(title.toLowerCase())
-      );
+    if (title || filter) {
+      giveaways = giveaways.filter((g) => {
+        const matchesTitle = title 
+          ? g.title.toLowerCase().includes(title.toLowerCase()) 
+          : true;
+        const matchesFilter = filter 
+          ? g.type.toLowerCase().includes(filter.toLowerCase()) 
+          : true;
+        return matchesTitle && matchesFilter;
+      });
     }
 
     const games = giveaways.map((giveaway) => ({
@@ -113,13 +120,8 @@ app.put("/reviews/:id", express.json(), async (req, res) => {
     const reviewId = req.params.id;
     const { author, rating, comment } = req.body;
 
-    if (!author || !rating || !comment) {
+    if (!rating || !comment) {
       return res.status(400).json({ error: "Todos los campos son requeridos" });
-    }
-
-    const parsedRating = parseInt(rating);
-    if (isNaN(parsedRating) || parsedRating < 1 || parsedRating > 5) {
-      return res.status(400).json({ error: "El rating debe ser entre 1 y 5" });
     }
 
     const result = await db.collection("reviews").updateOne(

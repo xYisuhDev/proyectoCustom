@@ -1,9 +1,10 @@
 import "./src/css/styles.css";
 
-const url = "http://5.250.190.219:3000/games";
+const url = `http://localhost:3000/games`;
 
 async function getGames() {
-  const res = await fetch(url);
+  const type = document.querySelector("#genre").value;
+  const res = await fetch(url + `?type=${type}`);
   if (!res.ok) {
     throw new Error("Failed to fetch games");
   }
@@ -83,7 +84,8 @@ document
   .addEventListener("submit", async (event) => {
     event.preventDefault();
     const title = document.querySelector("#search").value;
-    const url = `http://localhost:3000/games?title=${title}`;
+    const filter = document.querySelector("#genre").value;
+    const url = `http://localhost:3000/games?title=${title}&type=${filter}`;
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error("Failed to fetch games");
@@ -152,16 +154,3 @@ document
       container.appendChild(gameCard);
     });
   });
-
-function adjustLayout() {
-  const container = document.querySelector("#games-container");
-  const games = document.querySelectorAll(".game-card");
-
-  if (games.length < 4) {
-    container.classList.add("few-results");
-  } else {
-    container.classList.remove("few-results");
-  }
-}
-adjustLayout();
-window.addEventListener("load", adjustLayout);

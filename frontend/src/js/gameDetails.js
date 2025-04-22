@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   try {
-    // Cargar detalles del juego
     const gameRes = await fetch(`http://5.250.190.219:3000/games/${gameId}`);
     if (!gameRes.ok) throw new Error("Game not found");
     const game = await gameRes.json();
 
-    // Mostrar detalles del juego
+    document.title = `${game.title} | Stargames`
+
     const gameDetails = document.getElementById("game-details");
     gameDetails.innerHTML = `
         <div class="flex flex-col md:flex-row gap-6">
@@ -45,10 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
 
-    // Cargar reseñas
     await loadReviews(gameId);
 
-    // Manejar envío de reseñas
     document
       .getElementById("review-form")
       .addEventListener("submit", async (e) => {
@@ -185,7 +183,6 @@ async function loadReviews(gameId) {
       )
       .join("");
 
-    // Configurar eventos para los menús
     setupReviewMenus();
   } catch (error) {
     console.error("Error loading reviews:", error);
@@ -195,7 +192,6 @@ async function loadReviews(gameId) {
 }
 
 function setupReviewMenus() {
-  // Mostrar/ocultar menú al hacer clic
   document.querySelectorAll(".review-menu-btn").forEach((btn) => {
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
@@ -256,14 +252,12 @@ function setupReviewMenus() {
 }
 
 function showEditForm(reviewCard, reviewId) {
-  // Obtener datos actuales de la reseña
   const author = reviewCard.querySelector(".font-bold").textContent;
   const rating = (
     reviewCard.querySelector(".flex.items-center").textContent.match(/★/g) || []
   ).length;
   const comment = reviewCard.querySelector("p:not(.font-bold)").textContent;
 
-  // Crear formulario de edición
   const editForm = document.createElement("div");
   editForm.className = "bg-gray-700 p-4 rounded-lg mt-2";
   editForm.innerHTML = `
