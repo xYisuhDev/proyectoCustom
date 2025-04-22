@@ -7,8 +7,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
+  const baseurl = "http://localhost:3000";
+
   try {
-    const gameRes = await fetch(`http://localhost:3000/games/${gameId}`);
+    const gameRes = await fetch(baseurl + `/${gameId}`);
     if (!gameRes.ok) throw new Error("Game not found");
     const game = await gameRes.json();
 
@@ -59,16 +61,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         };
 
         try {
-          const res = await fetch(
-            `http://localhost:3000/games/${gameId}/reviews`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            }
-          );
+          const res = await fetch(baseurl + `/games/${gameId}/reviews`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
 
           if (!res.ok) throw new Error("Failed to submit review");
 
@@ -88,7 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
+    const res = await fetch(baseurl + `/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -127,7 +126,7 @@ async function loadReviews(gameId) {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
+    const res = await fetch(baseurl + `/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -223,12 +222,9 @@ function setupReviewMenus() {
 
       if (confirm("¿Seguro que quieres borrar esta reseña?")) {
         try {
-          const response = await fetch(
-            `http://localhost:3000/reviews/${reviewId}`,
-            {
-              method: "DELETE",
-            }
-          );
+          const response = await fetch(`/reviews/${reviewId}`, {
+            method: "DELETE",
+          });
 
           if (response.ok) {
             const gameId = new URLSearchParams(window.location.search).get(

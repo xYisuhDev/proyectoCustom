@@ -1,10 +1,10 @@
 import "./src/css/styles.css";
 
-const url = `http://localhost:3000/games`;
+const baseurl = `http://localhost:3000/games`;
 
 async function getGames() {
   const type = document.querySelector("#genre").value;
-  const res = await fetch(url + `?type=${type}`);
+  const res = await fetch(baseurl + `?type=${type}`);
   if (!res.ok) {
     throw new Error("Failed to fetch games");
   }
@@ -85,7 +85,7 @@ document
     event.preventDefault();
     const title = document.querySelector("#search").value;
     const filter = document.querySelector("#genre").value;
-    const url = `http://localhost:3000/games?title=${title}&type=${filter}`;
+    const url = baseurl + `?title=${title}&type=${filter}`;
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error("Failed to fetch games");
