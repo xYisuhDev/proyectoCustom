@@ -2,10 +2,36 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 const cors = require("cors");
 const app = express();
+const jwt = require("jsonwebtoken");
+const bodyParser = require("body-parser");
+const bcrypt = require("bcryptjs");
 
 const uri = "mongodb+srv://AdminMongo:Admin1234@apis.gfw5aaa.mongodb.net/";
 const client = new MongoClient(uri);
 let db;
+
+const authenticateJWT = (req, res, next) => {
+  const nonSecureRoutes = ["/login", "/users"];
+  console.log(req.originalUrl);
+  if (nonSecureRoutes.includes(req.originalUrl)) {
+    next();
+    return;
+  }
+  const token = req.headers.authorization?.substring(7);
+  console.log(SECRET_KEY);
+  console.log(token);
+  if (token) {
+    jwt.verify(token, SECRET_KEY, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    res.sendStatus(401);
+  }
+};
 
 async function connectDB() {
   try {
@@ -18,18 +44,10 @@ async function connectDB() {
 }
 connectDB();
 
-app.use(cors());
 app.use(express.json());
-
-app.get("/users", async (req, res) => {
-  try {
-    const users = await db.collection("users").find().toArray();
-    res.json(users);
-  } catch (err) {
-    console.error("Error fetching user details:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+app.use(cors());
+app.use(bodyParser.json());
+app.use(authenticateJWT);
 
 app.post("/users", async (req, res) => {
   try {
@@ -46,7 +64,23 @@ app.post("/users", async (req, res) => {
   }
 });
 
-app.get("/games", async (req, res) => {
+const SECRET_KEY = "Madosa2010";
+
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await db.collection("users").findOne({ email });
+  if (user && bcrypt.compareSync(password, user.password)) {
+    console.log(bcrypt.compareSync(password, user.password));
+    const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
+      expiresIn: "1h",
+    });
+    res.json({ token });
+  } else {
+    res.status(401).send("Invalid Credentials");
+  }
+});
+
+app.get("/games", authenticateJWT, async (req, res) => {
   try {
     const { title } = req.query;
     const { type } = req.query;

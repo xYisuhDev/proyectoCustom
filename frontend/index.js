@@ -4,7 +4,16 @@ const baseurl = `http://localhost:3000/games`;
 
 async function getGames() {
   const type = document.querySelector("#genre").value;
-  const res = await fetch(baseurl + `?type=${type}`);
+  const token = localStorage.getItem("authToken");
+
+  console.log("Token enviado:", token);
+
+  const res = await fetch(baseurl + `?type=${type}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch games");
   }
@@ -86,7 +95,14 @@ document
     const title = document.querySelector("#search").value;
     const filter = document.querySelector("#genre").value;
     const url = baseurl + `?title=${title}&type=${filter}`;
-    const res = await fetch(url);
+    const token = localStorage.getItem("authToken");
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch games");
     }
