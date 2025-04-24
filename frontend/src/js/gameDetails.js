@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
           if (!res.ok) throw new Error("Failed to submit review");
 
-          // Limpiar formulario y recargar reseñas
           document.getElementById("review-form").reset();
           await loadReviews(gameId);
         } catch (error) {
@@ -146,7 +145,6 @@ async function loadReviews(gameId) {
             <i class="fas fa-ellipsis-v"></i>
           </button>
           
-          <!-- Menú desplegable (inicialmente oculto) -->
           <div class="review-dropdown hidden absolute right-0 mt-2 w-40 bg-gray-700 rounded shadow-lg z-50 border border-gray-600">
             <button class="edit-review w-full text-left px-4 py-2 hover:bg-gray-600" data-id="${
               review._id
@@ -160,7 +158,6 @@ async function loadReviews(gameId) {
             </button>
           </div>
           
-          <!-- Contenido de la reseña -->
           <div class="review-content">
             <div class="flex justify-between items-start mb-2">
               <h3 class="font-bold">${review.author}</h3>

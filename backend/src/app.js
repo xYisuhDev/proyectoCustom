@@ -21,6 +21,31 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.get("/users", async (req, res) => {
+  try {
+    const users = await db.collection("users").find().toArray();
+    res.json(users);
+  } catch (err) {
+    console.error("Error fetching user details:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.post("/users", async (req, res) => {
+  try {
+    const user = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+    await db.collection("users").insertOne(user);
+    console.log(user);
+    res.status(201).json(user);
+  } catch (err) {
+    console.error("Failed to create user:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.get("/games", async (req, res) => {
   try {
     const { title } = req.query;
