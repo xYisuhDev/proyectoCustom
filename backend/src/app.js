@@ -12,24 +12,27 @@ let db;
 
 const authenticateJWT = (req, res, next) => {
   const nonSecureRoutes = ["/login", "/users"];
-  console.log(req.originalUrl);
-  if (nonSecureRoutes.includes(req.originalUrl)) {
+  const isNonSecureRoute = nonSecureRoutes.some((route) =>
+    req.originalUrl.startsWith(route)
+  );
+
+  if (isNonSecureRoute) {
     next();
     return;
   }
-  const token = req.headers.authorization?.substring(7);
-  console.log(SECRET_KEY);
-  console.log(token);
+
+  const token = req.headers.authorization?.split(" ")[1]; // Extrae el token después de "Bearer"
   if (token) {
     jwt.verify(token, SECRET_KEY, (err, user) => {
       if (err) {
-        return res.sendStatus(403);
+        console.error("Error al verificar el token:", err);
+        return res.sendStatus(403); // Token inválido
       }
       req.user = user;
       next();
     });
   } else {
-    res.sendStatus(401);
+    res.sendStatus(401); // Token faltante
   }
 };
 
@@ -80,7 +83,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/games", authenticateJWT, async (req, res) => {
+app.get("/games", async (req, res) => {
   try {
     const { title } = req.query;
     const { type } = req.query;

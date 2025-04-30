@@ -6,11 +6,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "/";
     return;
   }
-
+  const token = localStorage.getItem("authToken");
   const baseurl = "http://localhost:3000/games";
 
   try {
-    const gameRes = await fetch(baseurl + `/${gameId}`);
+    const gameRes = await fetch(baseurl + `/${gameId}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!gameRes.ok) throw new Error("Game not found");
     const game = await gameRes.json();
 
@@ -86,46 +91,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadReviews(gameId) {
   try {
-    const res = await fetch(baseurl + `/${gameId}/reviews`);
-    if (!res.ok) throw new Error("Failed to load reviews");
-
-    const reviews = await res.json();
-    const reviewsList = document.getElementById("reviews-list");
-
-    if (reviews.length === 0) {
-      reviewsList.innerHTML =
-        '<p class="text-gray-400">No reviews yet. Be the first to review!</p>';
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      console.error("No se encontró el token en localStorage");
+      alert("Debes iniciar sesión para ver las reseñas.");
+      window.location.href = "/login";
       return;
     }
 
-    reviewsList.innerHTML = reviews
-      .map(
-        (review) => `
-        <div class="bg-gray-800 p-4 rounded-lg">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="font-bold">${review.author}</h3>
-            <div class="flex items-center">
-              ${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}
-              <span class="ml-2 text-sm text-gray-400">
-                ${new Date(review.date).toLocaleDateString()}
-              </span>
-            </div>
-          </div>
-          <p>${review.comment}</p>
-        </div>
-      `
-      )
-      .join("");
-  } catch (error) {
-    console.error("Error loading reviews:", error);
-    document.getElementById("reviews-list").innerHTML =
-      '<p class="text-red-500">Error loading reviews. Please try again later.</p>';
-  }
-}
+    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`, // Asegúrate de que el formato sea correcto
+      },
+    });
 
-async function loadReviews(gameId) {
-  try {
-    const res = await fetch(`http://localhost:3000/games/${gameId}/reviews`);
     if (!res.ok) throw new Error("Failed to load reviews");
 
     const reviews = await res.json();
@@ -139,47 +119,17 @@ async function loadReviews(gameId) {
     reviewsList.innerHTML = reviews
       .map(
         (review) => `
-        <div class="bg-gray-800 p-4 rounded-lg relative">
-          <!-- Botón del menú -->
-          <button class="review-menu-btn absolute top-2 right-2 p-1 mt-1 rounded hover:bg-gray-700">
-            <i class="fas fa-ellipsis-v"></i>
-          </button>
-          
-          <div class="review-dropdown hidden absolute right-0 mt-2 w-40 bg-gray-700 rounded shadow-lg z-50 border border-gray-600">
-            <button class="edit-review w-full text-left px-4 py-2 hover:bg-gray-600" data-id="${
-              review._id
-            }">
-              <i class="fas fa-edit mr-2"></i> Editar
-            </button>
-            <button class="delete-review w-full text-left px-4 py-2 hover:bg-gray-600 text-red-400" data-id="${
-              review._id
-            }">
-              <i class="fas fa-trash mr-2"></i> Borrar
-            </button>
-          </div>
-          
-          <div class="review-content">
-            <div class="flex justify-between items-start mb-2">
-              <h3 class="font-bold">${review.author}</h3>
-              <div class="flex items-center">
-                ${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}
-                <span class="ml-2 text-sm text-gray-400 mr-2">
-                  ${new Date(review.date).toLocaleDateString()}
-                </span>
-              </div>
-            </div>
-            <p>${review.comment}</p>
-          </div>
+        <div class="bg-gray-800 p-4 rounded-lg">
+          <h3 class="font-bold">${review.author}</h3>
+          <p>${review.comment}</p>
         </div>
       `
       )
       .join("");
-
-    setupReviewMenus();
   } catch (error) {
     console.error("Error loading reviews:", error);
-    reviewsList.innerHTML =
-      '<p class="text-red-500">Error al cargar reseñas</p>';
+    document.getElementById("reviews-list").innerHTML =
+      '<p class="text-red-500">Error loading reviews. Please try again later.</p>';
   }
 }
 
@@ -221,6 +171,9 @@ function setupReviewMenus() {
         try {
           const response = await fetch(`/reviews/${reviewId}`, {
             method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           });
 
           if (response.ok) {
@@ -296,6 +249,7 @@ function showEditForm(reviewCard, reviewId) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ author, rating, comment }),
       });

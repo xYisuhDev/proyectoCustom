@@ -29,14 +29,15 @@ async function renderGames() {
       const gameCard = document.createElement("div");
       gameCard.classList.add(
         "game-card",
-        "ring",
+        "ring-3",
         "ring-white",
         "rounded-lg",
         "p-4",
         "shadow-lg",
         "transition-shadow",
         "cursor-pointer",
-        "w-1/5"
+        "w-1/5",
+        "hover:ring-purple-400"
       );
       gameCard.addEventListener("click", () => {
         window.location.href = `game.html?id=${game.id}`;
